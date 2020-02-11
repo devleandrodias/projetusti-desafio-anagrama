@@ -13,9 +13,12 @@ public class AnagramaBusinessImpl {
   public static void main(String[] args) throws IOException {
     List<String> lines = ReaderFileText.readFileText();
 
-    for (int i = 1; i < lines.size(); i++) {
+    for (int i = 0; i < lines.size(); i++) {
       String line = lines.get(i);
-      System.out.println(line);
+      String[] words = line.split(" ");
+      for (String word : words) {
+        System.out.println(word);
+      }
     }
   }
 }
