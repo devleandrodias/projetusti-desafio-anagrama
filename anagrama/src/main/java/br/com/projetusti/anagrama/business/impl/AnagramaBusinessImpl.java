@@ -58,11 +58,31 @@ public class AnagramaBusinessImpl {
       }
     }
 
+    // Método que organiza os anagramas por linha
+    List<String> anagramasOrdenadosNaoRepetidos = new ArrayList<>();
+
+    for (String string : anagramasNaoRepetidos) {
+
+      char[] f = string.toCharArray();
+
+      Arrays.sort(f);
+
+      StringBuilder str = new StringBuilder();
+
+      for (int i = 0; i < f.length; i++) {
+        str.append(f[i]);
+      }
+
+      if (!anagramasOrdenadosNaoRepetidos.contains(str.toString()))
+        anagramasOrdenadosNaoRepetidos.add(str.toString());
+    }
+
+    // Método que escreve os anagramas em arquivo texto (Resultado Final)
     File file = new File("files\\anagrama.txt");
 
     try (FileWriter fileWriter = new FileWriter(file, true); FileReader fileReader = new FileReader(file);) {
 
-      fileWriter.write("3" + "\n");
+      fileWriter.write(Integer.toString(anagramasOrdenadosNaoRepetidos.size()) + "\n");
 
       for (String string : anagramasNaoRepetidos) {
         fileWriter.write(string + "\n");
@@ -76,8 +96,6 @@ public class AnagramaBusinessImpl {
         System.out.print(c);
       }
     }
-
-    System.out.println(anagramasNaoRepetidos);
   }
 
   // Método que verifica se duas strings são anagramas
