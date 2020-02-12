@@ -16,13 +16,10 @@ import br.com.projetusti.anagrama.util.ReaderFileText;
 public class AnagramaBusinessImpl {
 
   public static void main(String[] args) throws IOException {
-    // Lê o arquivo de texto linha a linha
     List<String> lines = ReaderFileText.readFileText();
 
-    // Cria o array de palavras sem acentuações espaços e caracteres especiais
     List<String> palavrasTratadasDiferentesTamanhosUnicas = new ArrayList<>();
 
-    // Faz a limpeza das palavras e os adiciona em um array, sem repetir palavras
     for (int i = 0; i < lines.size(); i++) {
       for (String word : lines.get(i).split(" ")) {
         String palavraTratada = word.replaceAll("[^a-zA-Z]", "").toLowerCase();
@@ -31,10 +28,8 @@ public class AnagramaBusinessImpl {
       }
     }
 
-    // Cria uma lista de anagramas que serão escritos no arquivo de texto
     List<List<String>> listaAnagramas = new ArrayList<>();
 
-    // Método que compara as palavras e verifica caso a caso se são anagramas
     for (int i = 0; i < palavrasTratadasDiferentesTamanhosUnicas.size(); i++) {
       for (int j = 0; j < palavrasTratadasDiferentesTamanhosUnicas.size(); j++) {
         if (i != j) {
@@ -47,10 +42,8 @@ public class AnagramaBusinessImpl {
       }
     }
 
-    // Separa as anagramas são repetidos
     List<String> anagramasNaoRepetidos = new ArrayList<>();
 
-    // Método que separa os anagramas repetidos
     for (List<String> l : listaAnagramas) {
       for (String m : l) {
         if (!anagramasNaoRepetidos.contains(m))
@@ -58,7 +51,6 @@ public class AnagramaBusinessImpl {
       }
     }
 
-    // Método que organiza os anagramas por linha
     List<String> anagramasOrdenadosNaoRepetidos = new ArrayList<>();
 
     for (String string : anagramasNaoRepetidos) {
@@ -77,7 +69,6 @@ public class AnagramaBusinessImpl {
         anagramasOrdenadosNaoRepetidos.add(str.toString());
     }
 
-    // Método que escreve os anagramas em arquivo texto (Resultado Final)
     File file = new File("files\\anagrama.txt");
 
     try (FileWriter fileWriter = new FileWriter(file, true); FileReader fileReader = new FileReader(file);) {
@@ -98,7 +89,6 @@ public class AnagramaBusinessImpl {
     }
   }
 
-  // Método que verifica se duas strings são anagramas
   private static List<String> isAnagrama(String a, String b) {
     List<String> anagramas = new ArrayList<>();
 
