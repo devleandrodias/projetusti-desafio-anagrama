@@ -1,3 +1,3 @@
 # Desafio - Anagrama - ProjetusTI
 
-> anagrama projeto configurado com springboot, executa-lo normalmente
+> Anagrama projeto configurado com springboot, executa-lo normalmente
